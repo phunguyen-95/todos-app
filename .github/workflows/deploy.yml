@@ -7,18 +7,15 @@ on:
 
 jobs:
   deploy:
-    - runs-on: ubuntu-latest
-  steps:
-    - name: Checkout code
-    - uses: actions/checkout@v4
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Install Railway CLI
-    - run: npm install -g @railway/cli
-    
-    - name: Deploy
-    - run: railway up --detach
-    - env:
-        RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+      - name: Install Railway CLI
+        run: npm install -g @railway/cli
 
-  
-  
+      - name: Deploy
+        run: railway up --detach
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
