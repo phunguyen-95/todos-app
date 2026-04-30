@@ -9,17 +9,17 @@ const pool = new Pool({
 });
 
 async function connectWithRetry() {
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 20; i++) {          
     try {
-      await pool.query('SELECT 1'); // thử kết nối
-      console.log('Database connected!');
-      return;
+      await pool.query('SELECT 1')
+      console.log('Database connected!')
+      return
     } catch (err) {
-      console.log(`DB not ready, retrying ${i + 1}/10...`);
-      await new Promise((r) => setTimeout(r, 2000)); // chờ 2 giây rồi thử lại
+      console.log(`DB not ready, retrying ${i + 1}/20...`)
+      await new Promise(r => setTimeout(r, 3000)) 
     }
   }
-  throw new Error('Cannot connect to database');
+  throw new Error('Cannot connect to database')
 }
 
 async function init() {
